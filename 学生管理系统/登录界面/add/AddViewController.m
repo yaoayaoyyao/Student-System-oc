@@ -135,8 +135,8 @@ static NSString *strCell = @"SJYCell";
         [self performSelector:@selector(dismiss:) withObject:alert afterDelay:1.5];
         [self dismissViewControllerAnimated:YES completion:nil];
         [_addMutableArray addObject:_stuNew];
-        if ([_delegate respondsToSelector:@selector(array:)]) {
-            [_delegate array:_addMutableArray];
+        if ([_delegate respondsToSelector:@selector(addArray:)]) {
+            [_delegate addArray:_addMutableArray];
         }
         [_addTableView reloadData];
     }

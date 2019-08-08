@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol AddViewControllerDelegate <NSObject>
-- (void)array:(NSMutableArray *)array;
+- (void)addArray:(NSMutableArray *)array;
 
 @end
 @interface AddViewController : UIViewController

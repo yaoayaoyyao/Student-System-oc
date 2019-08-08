@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol ModifyViewControllerDelegate <NSObject>
-- (void)array:(NSMutableArray *)array;
+- (void)modifyArray:(NSMutableArray *)array;
 
 @end
 @interface ModifyViewController : UIViewController

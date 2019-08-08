@@ -134,7 +134,7 @@
 #pragma mark -- 按钮点击事件
 - (void)addClick{
     AddViewController *addViewController = [[AddViewController alloc]init];
-    addViewController.addMutableArray = _studentMutableArray;
+    addViewController.addMutableArray = [_studentMutableArray mutableCopy];
     addViewController.delegate = self;
     addViewController.view.backgroundColor = [UIColor whiteColor];
     addViewController.title = @"添加";
@@ -144,7 +144,7 @@
 }
 - (void)deleteClick{
     DeleteViewController *deleteViewController = [[DeleteViewController alloc]init];
-    deleteViewController.deleteMutableArray = _studentMutableArray;
+    deleteViewController.deleteMutableArray = [_studentMutableArray mutableCopy];
     deleteViewController.delegate = self;
     deleteViewController.view.backgroundColor = [UIColor whiteColor];
     deleteViewController.title = @"删除";
@@ -154,7 +154,7 @@
 }
 - (void)modifyClick{
     ModifyViewController *modifyViewController = [[ModifyViewController alloc]init];
-    modifyViewController.modifyMutableArray = _studentMutableArray;
+    modifyViewController.modifyMutableArray = [_studentMutableArray mutableCopy];
     modifyViewController.delegate = self;
     modifyViewController.view.backgroundColor = [UIColor whiteColor];
     modifyViewController.title = @"修改";
@@ -164,7 +164,7 @@
 }
 - (void)seekClick{
     SeekViewController *seekViewController = [[SeekViewController alloc]init];
-    seekViewController.seekMutableArray = _studentMutableArray;
+    seekViewController.seekMutableArray = [_studentMutableArray mutableCopy];
     seekViewController.view.backgroundColor = [UIColor whiteColor];
     seekViewController.title = @"查询";
     seekViewController.navigationController.navigationBar.translucent = NO;
@@ -173,7 +173,7 @@
 }
 - (void)allClick{
     AllViewController *allViewController = [[AllViewController alloc]init];
-    allViewController.allMutableArray = _studentMutableArray;
+    allViewController.allMutableArray = [_studentMutableArray mutableCopy];
     allViewController.view.backgroundColor = [UIColor whiteColor];
     allViewController.title = @"全部信息";
     allViewController.navigationController.navigationBar.translucent = NO;
@@ -184,7 +184,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
+- (void)addArray:(NSMutableArray *)array{
+    _studentMutableArray = array;
+}
+- (void)deleteArray:(NSMutableArray *)array{
+    _studentMutableArray = array;
+}
+- (void)modifyArray:(NSMutableArray *)array{
+    _studentMutableArray = array;
+}
 
 
 

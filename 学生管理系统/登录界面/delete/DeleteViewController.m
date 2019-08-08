@@ -102,8 +102,8 @@ static NSString *strCell = @"SJYCell";
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"恭喜" message:@"信息已成功删除！" preferredStyle:UIAlertControllerStyleAlert];
             [self presentViewController:alert animated:YES completion:nil];
             [self performSelector:@selector(dismiss:) withObject:alert afterDelay:1.5];
-            if ([_delegate respondsToSelector:@selector(array:)]) {
-                [_delegate array:_deleteMutableArray];
+            if ([_delegate respondsToSelector:@selector(deleteArray:)]) {
+                [_delegate deleteArray:_deleteMutableArray];
             }
             [_deleteTableView reloadData];
             break;

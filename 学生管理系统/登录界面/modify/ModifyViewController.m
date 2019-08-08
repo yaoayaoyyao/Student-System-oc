@@ -158,8 +158,8 @@ static NSString *strCell = @"SJYCell";
     stuNew.gradeStu = _modifySJYView.gradeTextField.text;
     [_modifyMutableArray replaceObjectAtIndex:count withObject:stuNew];
     
-    if ([_delegate respondsToSelector:@selector(array)]) {
-        [_delegate array:_modifyMutableArray];
+    if ([_delegate respondsToSelector:@selector(modifyArray)]) {
+        [_delegate modifyArray:_modifyMutableArray];
     }
     [_modifyTableView reloadData];
     [UIView animateWithDuration:0.3 animations:^{

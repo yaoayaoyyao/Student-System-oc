@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol DeleteViewControllerDelegate <NSObject>
-- (void)array:(NSMutableArray *)array;
+- (void)deleteArray:(NSMutableArray *)array;
 
 @end
 @interface DeleteViewController : UIViewController
