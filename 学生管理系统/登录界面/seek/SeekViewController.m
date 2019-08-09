@@ -92,7 +92,7 @@ static NSString *strCell = @"SJYCell";
     
 }
 
-- (void)seekClick{
+- (void)seekClick {
     
     [_seekTextField resignFirstResponder];
     
@@ -134,10 +134,11 @@ static NSString *strCell = @"SJYCell";
         [alert addAction:cancel];
     }
 }
-- (void)backClick{
+- (void)backClick {
     [_seekTextField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 #pragma mark -- 单元格
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

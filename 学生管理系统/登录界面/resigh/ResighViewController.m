@@ -81,11 +81,21 @@
     [self presentViewController:alert animated:YES completion:nil];
     
     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self pdUser];
+        if ([self->_resighNameTextField.text isEqualToString:@""] || [self->_resighPasswordTextField.text isEqualToString:@""]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"不可添加空学生" preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alert animated:YES completion:nil];
+            UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAlert];
+        }
+        else{
+            [self pdUser];
+        }
     }];
     [alert addAction:defaultAction];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
     [alert addAction:cancel];
 }
 - (void)pdUser{

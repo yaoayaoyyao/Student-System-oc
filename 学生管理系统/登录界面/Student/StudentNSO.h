@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface StudentNSO : NSObject
 
-@property (nonatomic,copy) NSString *nameStu;
+@property (nonatomic, copy) NSString *nameStu;
 @property (nonatomic,copy) NSString *numberStu;
 @property (nonatomic,copy) NSString *classStu;
 @property (nonatomic,copy) NSString *ageStu;

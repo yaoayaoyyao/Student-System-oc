@@ -144,7 +144,7 @@ static NSString *strCell = @"SJYCell";
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancel];
     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self modifyCount:btn.tag];
+        [self modifyCount:(int)btn.tag];
     }];
     [alert addAction:defaultAction];
 }
@@ -158,7 +158,7 @@ static NSString *strCell = @"SJYCell";
     stuNew.gradeStu = _modifySJYView.gradeTextField.text;
     [_modifyMutableArray replaceObjectAtIndex:count withObject:stuNew];
     
-    if ([_delegate respondsToSelector:@selector(modifyArray)]) {
+    if ([_delegate respondsToSelector:@selector(modifyArray:)]) {
         [_delegate modifyArray:_modifyMutableArray];
     }
     [_modifyTableView reloadData];

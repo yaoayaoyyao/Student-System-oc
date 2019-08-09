@@ -17,7 +17,7 @@ static NSString *strCell = @"SJYCell";
 @property (nonatomic, strong)UIButton *addButton;
 @property (nonatomic, strong)UITableView *addTableView;
 @property SJYView *sjyView;
-@property StudentNSO *stuNew;
+
 
 @end
 
@@ -51,7 +51,6 @@ static NSString *strCell = @"SJYCell";
     
     _sjyView = [[SJYView alloc]initWithFrame:CGRectMake( 0, 600, 375, 140)];
     [self.view addSubview:_sjyView];
-    _stuNew = [[StudentNSO alloc]init];
     
     _sjyView.numberTextField.keyboardType = UIKeyboardTypeNumberPad;
     _sjyView.classTextField.placeholder = @"格式：软件1801";
@@ -102,7 +101,15 @@ static NSString *strCell = @"SJYCell";
     [self presentViewController:alert animated:YES completion:nil];
     
     UIAlertAction *okAlert = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self addStu];
+        if ([self->_sjyView.nameTextField.text isEqualToString:@""] || [self->_sjyView.numberTextField.text isEqualToString:@""] || [self->_sjyView.classTextField.text isEqualToString:@""] || [self->_sjyView.ageTextField.text isEqualToString:@""] || [self->_sjyView.gradeTextField.text isEqualToString:@""]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"不可添加空学生" preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alert animated:YES completion:nil];
+            UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAlert];
+        }
+        else{
+            [self addStu];
+        }
     }];
     [alert addAction:okAlert];
     
@@ -111,17 +118,19 @@ static NSString *strCell = @"SJYCell";
 }
 
 - (void)addStu{
-    _stuNew.nameStu = _sjyView.nameTextField.text;
-    _stuNew.numberStu = _sjyView.numberTextField.text;
-    _stuNew.classStu = _sjyView.classTextField.text;
-    _stuNew.ageStu = _sjyView.ageTextField.text;
-    _stuNew.gradeStu = _sjyView.gradeTextField.text;
+    
+    StudentNSO *stuNew = [[StudentNSO alloc]init];
+    stuNew.nameStu = _sjyView.nameTextField.text;
+    stuNew.numberStu = _sjyView.numberTextField.text;
+    stuNew.classStu = _sjyView.classTextField.text;
+    stuNew.ageStu = _sjyView.ageTextField.text;
+    stuNew.gradeStu = _sjyView.gradeTextField.text;
     
     StudentNSO *stuNSO = [[StudentNSO alloc]init];
     int i;
     for (i = 0; i < [_addMutableArray count]; i++) {
         stuNSO = _addMutableArray[i];
-        if ([stuNSO.numberStu isEqualToString:_stuNew.numberStu]) {
+        if ([stuNSO.numberStu isEqualToString:stuNew.numberStu]) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"此同学已存在" preferredStyle:UIAlertControllerStyleAlert];
             [self presentViewController:alert animated:YES completion:nil];
             UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
@@ -134,7 +143,7 @@ static NSString *strCell = @"SJYCell";
         [self presentViewController:alert animated:YES completion:nil];
         [self performSelector:@selector(dismiss:) withObject:alert afterDelay:1.5];
         [self dismissViewControllerAnimated:YES completion:nil];
-        [_addMutableArray addObject:_stuNew];
+        [_addMutableArray addObject:stuNew];
         if ([_delegate respondsToSelector:@selector(addArray:)]) {
             [_delegate addArray:_addMutableArray];
         }
@@ -170,7 +179,7 @@ static NSString *strCell = @"SJYCell";
 }
 
 
-#pragma mark -- 单元格
+# pragma mark -- 单元格
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_addMutableArray count];
 }
